@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@auth/*": ["./src/modules/auth/*"],
+      "@chat/*": ["./src/modules/chatbot/*"],
+      "@user/*": ["./src/modules/user/*"],
+      "@error/*": ["./src/modules/error/*"],
+      "@landing/*": ["./src/modules/landing/*"],
+      "@dashboard/*": ["./src/modules/dashboard/*"],
+      "@upload/*": ["./src/modules/upload/*"],
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "2.57.4",
+    "axios": "1.12.2",
+    "bcryptjs": "3.0.2",
+    "cookie-parser": "1.4.7",
+    "cors": "2.8.5",
+    "dotenv": "17.2.0",
+    "express": "5.1.0",
+    "jsonwebtoken": "9.0.2",
+    "langchain": "0.3.34",
+    "mongoose": "8.16.2",
+    "multer": "2.0.2",
+    "nodemailer": "^7.0.5",
+    "nodemailer-express-handlebars": "^7.0.0",
+    "otpauth": "^9.4.0",
+    "pdfjs-dist": "5.4.149",
+    "qrcode": "^1.5.4",
+    "remove-markdown": "0.6.2",
+    "zod": "4.0.5"
+  },
+  "imports": {
+    "#auth/*": "./src/features/auth/*",
+    "#user/*": "./src/features/user/*",
+    "#chat/*": "./src/features/chat/*",
+    "#database/*": "./src/features/database/*",
+    "#upload/*": "./src/features/upload/*",
+    "#utils/*": "./src/utils/*",
+    "#config/*": "./src/config/*",
+    "#routes/*": "./src/routes/*"
+  }
+}
