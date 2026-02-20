@@ -1,53 +1,51 @@
-# 🤖 ChatBot Inteligente con RAG
+# 🤖 Intelligent ChatBot with RAG
 
-Un **asistente virtual avanzado** diseñado para interactuar con los usuarios a través de un chatbot que responde preguntas basándose exclusivamente en documentación propia y personalizada.
+An **advanced virtual assistant** designed to interact with users through a chatbot that answers questions based exclusively on its own customized documentation.
 
-Este proyecto implementa la técnica de **RAG (Retrieval Augmented Generation)**, que asegura que el chatbot proporcione respuestas fundamentadas únicamente en la información almacenada en el sistema, evitando la generación de contenido externo o inventado.
-
----
-
-## ¿Qué es RAG?
-
-**RAG (Retrieval Augmented Generation)** es una metodología que combina dos procesos clave: la recuperación de información y la generación de texto.
-
-Primero, el sistema recupera fragmentos relevantes de una base de datos o documentos específicos (*retrieval*). Luego, un modelo de lenguaje genera respuestas precisas y contextualizadas basándose en esa información (*generation*).
-
-Gracias a este enfoque, el chatbot ofrece respuestas confiables y fundamentadas exclusivamente en la documentación proporcionada, eliminando el riesgo de generar contenido incorrecto o fuera de contexto.
+This project implements a **Retrieval-Augmented Generation (RAG)** architecture, ensuring that the chatbot generates responses strictly grounded in the information stored within the system. This approach prevents the model from introducing external data or fabricating content beyond the authorized knowledge base.
 
 ---
 
-## ✨ Características principales
+## What is RAG?
 
-- 📂 **Carga y gestión de documentación**  
-  Usuarios autorizados pueden subir documentos en formatos **PDF, TXT o MD**.  
-  Los archivos se procesan, dividen en fragmentos (*chunks*) y se almacenan en una **base de datos vectorial** que optimiza las búsquedas.
+**Retrieval-Augmented Generation (RAG)** is a methodology that combines two core processes: information retrieval and text generation.
 
-- 🧠 **Respuestas inteligentes con RAG**  
-  El chatbot responde únicamente en función de la documentación disponible.  
-  👉 En caso de no encontrar información relevante, comunica de forma clara que no dispone de datos suficientes para responder.
+First, the system retrieves relevant fragments from a database or specific documents (*retrieval*). Then, a language model generates accurate, contextualized responses based on that information (*generation*).
 
-- 💬 **Interacción en tiempo real**  
-  Comunicación fluida a través de un **widget de chat flotante**, que ofrece una experiencia de usuario ágil y amigable.
-
-- 🔐 **Seguridad y control de acceso**  
-  Solo usuarios autenticados pueden subir y gestionar documentos, garantizando la privacidad, seguridad y actualización constante de la base de conocimiento.
+By adopting this approach, the chatbot delivers reliable answers based exclusively on the provided documentation, effectively eliminating the risk of producing inaccurate or out-of-scope content.
 
 ---
 
-## 🔧 Funcionamiento
+## ✨ Key Features
 
-1. **Procesamiento y almacenamiento de documentos**  
-   - Los archivos (PDF, TXT, MD) se procesan automáticamente.  
-   - Se extrae su contenido y se fragmenta en bloques manejables (*chunks*).  
-   - Se generan vectores de características (*embeddings*) que se almacenan en una base vectorial optimizada para búsquedas eficientes.
+- 📂 **Document Upload and Management**
+  Authorized users can upload documentation in **PDF, TXT, or MD** formats.
+  Files are processed, segmented into structured chunks, and stored in a **vector database** optimized for high-performance semantic search.
 
-2. **Consulta a través del chatbot**  
-   - El usuario realiza una pregunta mediante el chat.  
-   - El sistema busca en la base vectorial los fragmentos más relevantes.  
-   - El modelo de lenguaje genera una respuesta contextualizada utilizando esta información.
+- 🧠 **Smart Responses with RAG**  
+  The chatbot answers exclusively based on the available documentation.  
+  👉 If no relevant information is found, it clearly communicates that it does not have enough data to respond.
 
-3. **Respuesta al usuario**  
-   - Si existen datos pertinentes, se ofrece una respuesta **precisa, clara y concisa**.  
-   - Si no hay información suficiente, el chatbot informa de manera transparente que no puede proporcionar una respuesta adecuada en ese momento.
+- 💬 **Real-time Interaction**  
+  Seamless communication through a **floating chat widge**t, delivering a smooth, intuitive, and user-friendly experience.
+
+- 🔐 **Security and Access Control**  
+  Only authenticated users are permitted to upload and manage documents, ensuring the privacy, security, and ongoing integrity of the knowledge base.
 
 ---
+
+## 🔧 How It Works
+
+1. **Document Processing and Storage**  
+   - Files (PDF, TXT, MD) are processed automatically.  
+   - Their content is extracted and divided into manageable chunks.  
+   - Feature vectors (*embeddings*) are created and stored in a vector database optimized for fast and accurate searches.
+
+2. **Chatbot Query**  
+   - Users submit questions via the chat interface.  
+   - The system retrieves the most relevant chunks from the vector database.  
+   - The language model generates a contextualized response based on this information.
+
+3. **User Response**  
+   - When relevant data is available, the chatbot provides a **clear, precise, and concise** answer.  
+   - If there isn’t enough information, the chatbot clearly informs the user that a suitable answer cannot be provided at this time.
