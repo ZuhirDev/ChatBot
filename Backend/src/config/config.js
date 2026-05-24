@@ -26,11 +26,6 @@ const CONFIG = {
         MODEL: process.env.GROQ_MODEL,
     },
 
-    OPENROUTER: {
-        API_KEY: process.env.OPENROUTER_API_KEY,
-        MODEL: process.env.OPENROUTER_MODEL,
-    },
-
     GOOGLE: {
         API_KEY: process.env.GOOGLE_API_KEY,
         MODEL: process.env.GOOGLE_MODEL,

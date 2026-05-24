@@ -73,8 +73,7 @@ export const sendVerificationEmail = async (req, res) => {
 
         await sendEmail({ 
             to: user.email, 
-            subject: `Reset your ${CONFIG.APP_NAME} password`, 
-            feature:'user',
+            subject: `Verify your ${CONFIG.APP_NAME} account`, 
             template: 'verify_email',
             context: {
                 name: user.name,

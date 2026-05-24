@@ -4,26 +4,31 @@ import { getEmbeddingProvider } from "#chat/services/embedding/embeddingFactory.
 
 export const supabase = createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
 
-export const insertDocument = async (message, title) => {
-  try {    
+export const insertDocument = async (chunks, title) => {
+  try {
+    if (!chunks || chunks.length === 0) return;
+
     const embeddingProvider = getEmbeddingProvider();
     
-    const [embeddings] = await embeddingProvider.embed(message);
+    const embeddings = await embeddingProvider.embed(chunks);
+
+    const recordsToInsert = chunks.map((chunk, index) => ({
+      title: title,
+      body: chunk,
+      embedding: embeddings[index],
+    }));
 
     const { data , error} = await supabase
       .from('documents')
-      .insert([
-        {
-          title: title,
-          body: message,
-          embedding: embeddings,
-        },
-      ]).select();
+      .insert(recordsToInsert)
+      .select();
       
     if (error) {
       console.error("❌ Error al insertar el lote en Supabase:", error.message);
       throw error;
     }
+
+    return data;
   } catch (err) {
     console.error("❌ Error en el proceso de inserción:", err.message);
   }

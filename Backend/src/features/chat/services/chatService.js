@@ -10,7 +10,7 @@ export const callLLM = async (systemPrompt, context, message) => {
       message,
     });
 
-    return reply || "Lo siento, no tengo información sobre ese tema en este momento.";
+    return reply || "No tengo información suficiente para responder esa consulta.";
   } catch (error) {
     console.error("❌ Error LLM:", error.message);
     return "Error al conectar con el modelo de IA";

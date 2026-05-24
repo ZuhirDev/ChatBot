@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"],
-      "#auth/*": ["features/auth/*"],
-      "#user/*": ["features/user/*"],
-      "#chat/*": ["features/chat/*"],
-      "#database/*": ["features/database/*"],
-      "#upload/*": ["features/upload/*"],
-      "#utils/*": ["utils/*"],
-      "#config/*": ["config/*"],
-      "#routes/*": ["routes/*"]
+      "@/*": ["./src/*"],
+      "#auth/*": ["./src/features/auth/*"],
+      "#user/*": ["./src/features/user/*"],
+      "#chat/*": ["./src/features/chat/*"],
+      "#database/*": ["./src/features/database/*"],
+      "#upload/*": ["./src/features/upload/*"],
+      "#utils/*": ["./src/utils/*"],
+      "#config/*": ["./src/config/*"],
+      "#routes/*": ["./src/routes/*"]
     }
   }
 }

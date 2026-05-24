@@ -21,11 +21,11 @@ export const register = async (req, res) => {
         await sendEmail({ 
             to: user.email, 
             subject: `Welcome to ${CONFIG.APP_NAME}`, 
-            feature:'auth', 
             template: 'welcome', 
             context: {
                 name: user.name,
                 company: CONFIG.APP_NAME,
+                url: CONFIG.FRONTEND_URL,
             } 
         });
 
@@ -101,7 +101,6 @@ export const forgotPassword = async (req, res) => {
         await sendEmail({
             to: user.email,
             subject: 'Reset your password',
-            feature: 'auth',
             template: 'forgot-password',
             context: {
                 name: user.name,
