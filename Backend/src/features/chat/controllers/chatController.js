@@ -1,4 +1,5 @@
-import { getEmbeddings, supabase } from "#database/service/databaseService.js";
+import { supabase } from "#database/service/databaseService.js";
+import { getEmbeddingProvider } from "#chat/services/embedding/embeddingFactory.js";
 import { callLLM } from "#chat/services/chatService.js";
 
 const CONTEXT_PROMPT = `
@@ -14,7 +15,8 @@ const CONTEXT_PROMPT = `
 export const ChatBot = async (req, res) => {
 
     const { message } = req.body;
-    const [queryEmbedding] = await getEmbeddings(message);
+    const embeddingProvider = getEmbeddingProvider();
+    const [queryEmbedding] = await embeddingProvider.embed(message);
 
     try {
         const { data, error } = await supabase.rpc('match_documents', {
@@ -37,4 +39,3 @@ export const ChatBot = async (req, res) => {
     }
 
 }
-

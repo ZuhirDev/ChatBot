@@ -15,12 +15,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/api', router);
 
-mongoose.connect(CONFIG.MONGO_URL)
-    .then(() => {
+// mongoose.connect(CONFIG.MONGO_URL)
+//     .then(() => {
         app.listen(CONFIG.PORT, () => {
             console.log(`Servidor funcionando en http://localhost:${CONFIG.PORT}`);
         });
-    })
-    .catch((err) => {
-        console.log("Error conectando a MongoDB: ", err);
-    });
+    // })
+    // .catch((err) => {
+    //     console.log("Error conectando a MongoDB: ", err);
+    // });

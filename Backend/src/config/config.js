@@ -17,6 +17,26 @@ const CONFIG = {
     MAIL_USER: process.env.MAIL_USER,
     MAIL_PASS: process.env.MAIL_PASS,
     MAIL_FROM: process.env.MAIL_FROM,
+
+    LLM_PROVIDER: process.env.LLM_PROVIDER,
+    EMBEDDING_PROVIDER: process.env.EMBEDDING_PROVIDER,
+
+    GROQ: {
+        API_KEY: process.env.GROQ_API_KEY,
+        MODEL: process.env.GROQ_MODEL,
+    },
+
+    OPENROUTER: {
+        API_KEY: process.env.OPENROUTER_API_KEY,
+        MODEL: process.env.OPENROUTER_MODEL,
+    },
+
+    GOOGLE: {
+        API_KEY: process.env.GOOGLE_API_KEY,
+        MODEL: process.env.GOOGLE_MODEL,
+        EMBEDDING_MODEL: process.env.GOOGLE_EMBEDDING_MODEL,
+    },
+    
 }
 
 export default CONFIG;

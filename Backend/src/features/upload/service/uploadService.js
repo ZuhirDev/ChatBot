@@ -1,4 +1,4 @@
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import multer from "multer";
 import RemoveMarkdown from "remove-markdown";
 import path from 'path';
@@ -8,10 +8,13 @@ import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs';
 const splitter = new RecursiveCharacterTextSplitter({
     chunkSize: 500,
     chunkOverlap: 100,
-    separators: ["\n\n", "\n", " ", "", "."],
+    separators: ["\n\n", "\n", ".", " ", ""],
 });
 
 export const splitText = async (text) => {
+    if (!text || typeof text !== "string") {
+        return [];
+    }
     return await splitter.splitText(text);
 }
 

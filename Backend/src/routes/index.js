@@ -7,7 +7,7 @@ import chatRouter from '#chat/routes/chatRouter.js';
 
 const router = express.Router();
 
-router.use('/languages', (req, res) => {
+router.get('/languages', (req, res) => {
     res.json({ languages: ['en', 'es', 'de'] });
 });
 router.use('/', authRouter);

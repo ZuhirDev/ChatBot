@@ -1,21 +1,18 @@
-import axios from "axios";
+import { getLLMProvider } from "./llm/llmFactory.js";
 
-export const callLLM = async (context_promt, context, message) => {
-    try {
-        const response = await axios.post('http://localhost:12434/engines/llama.cpp/v1/chat/completions', {
-            model: "ai/llama3.2:latest",
-            messages: [
-                { role: "system", content:  `${context_promt}` },
-                { role: "user", content: `Contexto: ${context}\n\nPregunta: ${message}` },
-            ]
-        }, {
-            headers: { 'Content-Type': 'application/json' }
-        });
+export const callLLM = async (systemPrompt, context, message) => {
+  try {
+    const provider = getLLMProvider();
 
-        return response.data?.choices?.[0]?.message?.content || "Sin respuesta.";
-        
-    } catch (error) {
-        console.log("Error", error)
-        return { error: 'Error al conectar con el modelo' };
-    }
-}
+    const reply = await provider.chat({
+      systemPrompt,
+      context,
+      message,
+    });
+
+    return reply || "Lo siento, no tengo información sobre ese tema en este momento.";
+  } catch (error) {
+    console.error("❌ Error LLM:", error.message);
+    return "Error al conectar con el modelo de IA";
+  }
+};
