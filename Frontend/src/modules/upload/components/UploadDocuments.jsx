@@ -144,7 +144,7 @@ const UploadDocuments = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
             <Upload className="h-4 w-4" />
-            Upload Documents
+            Add Your Knowledge
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -165,29 +165,33 @@ const UploadDocuments = () => {
               type="file"
               multiple
               accept=".pdf,.txt,.md"
+              onClick={(e) => e.stopPropagation()}
               onChange={handleFileSelect}
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             />
 
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center gap-4">
               <div className={cn(
-                "mx-auto h-10 w-10 rounded-full flex items-center justify-center",
-                isDragOver ? "bg-primary text-primary-foreground" : "bg-muted"
+                "h-16 w-16 rounded-2xl flex items-center justify-center transition-all",
+                isDragOver 
+                  ? "bg-primary/20 text-primary scale-110" 
+                  : "bg-muted text-muted-foreground"
               )}>
-                <Upload className="h-5 w-5" />
+                <Upload className="h-8 w-8" />
               </div>
 
-              <div className="space-y-1">
-                <p className="text-sm font-medium">
-                  {isDragOver ? 'Drop the files here' : 'Select or drag files'}
+              <div className="space-y-2">
+                <p className="text-base font-semibold text-foreground">
+                  {isDragOver ? '📥 Drop your documents here' : '📄 Drag files or click to browse'}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   PDF, TXT, Markdown • Max 10MB per file
                 </p>
               </div>
 
-              <Button variant="outline" className="mt-1 h-8 px-3 text-sm">
-                Select Files
+              <Button variant="default" className="mt-3 px-6">
+                <Upload className="mr-2 h-4 w-4" />
+                Choose Files
               </Button>
             </div>
           </div>
@@ -195,15 +199,17 @@ const UploadDocuments = () => {
       </Card>
 
       {files.length > 0 && (
-        <Card>
+        <Card className="border border-border/50 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="flex items-center justify-between text-base">
-              <span>Selected Files</span>
-              <Badge variant="secondary">{files.length} pending</Badge>
+            <CardTitle className="flex items-center justify-between text-lg">
+              <span>Your Files ({files.length})</span>
+              <Badge variant="secondary" className="bg-muted text-muted-foreground">
+                {files.length} {files.length === 1 ? 'ready' : 'ready'}
+              </Badge>
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="space-y-3">
+          <CardContent className="space-y-4">
             {files.map((file) => {
               const Icon = getFileIcon(file.file);
               const color = getFileColor(file.file);
@@ -211,15 +217,15 @@ const UploadDocuments = () => {
               return (
                 <div
                   key={file.id}
-                  className="flex items-center gap-3 p-3 rounded-md border bg-muted/20 hover:bg-muted/30 transition-colors"
+                  className="flex items-center gap-4 p-4 rounded-lg border border-border/50 bg-card hover:bg-muted/40 hover:border-border transition-all duration-200"
                 >
-                  <div className={cn("p-2 rounded-md text-white", color)}>
-                    <Icon className="h-4 w-4" />
+                  <div className={cn("p-3 rounded-lg text-white flex-shrink-0", color)}>
+                    <Icon className="h-5 w-5" />
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm truncate">{file.file.name}</p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="font-semibold text-sm text-foreground truncate">{file.file.name}</p>
+                    <p className="text-xs text-muted-foreground mt-1">
                       {formatFileSize(file.file.size)}
                     </p>
                   </div>
@@ -229,7 +235,7 @@ const UploadDocuments = () => {
                     size="sm"
                     onClick={() => removeFile(file.id)}
                     disabled={isUploading}
-                    className="hover:text-destructive"
+                    className="hover:text-destructive hover:bg-destructive/10 flex-shrink-0"
                   >
                     <X className="h-4 w-4" />
                   </Button>
@@ -237,21 +243,29 @@ const UploadDocuments = () => {
               );
             })}
 
-            <div className="flex justify-end pt-3 border-t">
+            <div className="flex justify-end gap-3 pt-4 border-t border-border/50">
+              <Button
+                variant="outline"
+                onClick={() => setFiles([])}
+                disabled={isUploading}
+                className="text-sm"
+              >
+                Clear All
+              </Button>
               <Button
                 onClick={handleUploadAll}
-                disabled={isUploading}
-                className="min-w-32 h-9 text-sm"
+                disabled={isUploading || files.length === 0}
+                className="min-w-40 text-sm"
               >
                 {isUploading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Uploading
+                    Processing...
                   </>
                 ) : (
                   <>
                     <Upload className="mr-2 h-4 w-4" />
-                    {files.length === 1 ? `Upload File` : `Upload ${files.length} Files`}
+                    Ingest Documents
                   </>
                 )}
               </Button>
